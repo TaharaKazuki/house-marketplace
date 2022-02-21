@@ -10,7 +10,7 @@ const Profile = () => {
     setUser(auth.currentUser!)
   }, [auth.currentUser])
 
-  return user ? <h1>{user.displayName}</h1> : <p> Not logged In</p>
+  return user ? <h1>{user.displayName}</h1> : <h1> Not logged In</h1>
 }
 
 export default Profile
