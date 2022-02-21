@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'
+import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   getAuth,
@@ -63,7 +64,7 @@ const SignUp = () => {
 
       navigate('/')
     } catch (error) {
-      console.info(error)
+      toast.error('Something went wrong with registration')
     }
   }
 
