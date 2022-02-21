@@ -10,11 +10,17 @@ import { db } from '../firebase.config'
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import { serverTimestamp, setDoc, doc, FieldValue } from 'firebase/firestore'
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string
+    email: string
+    password?: string
+    timestamp?: FieldValue
+  }>({
     name: '',
     email: '',
     password: '',
@@ -31,7 +37,35 @@ const SignUp = () => {
     }))
   }
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {}
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      const auth = getAuth()
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password!
+      )
+
+      const user = userCredential.user
+
+      updateProfile(auth.currentUser!, {
+        displayName: name,
+      })
+      const formDataCopy = { ...formData }
+      delete formDataCopy.password
+
+      formDataCopy.timestamp = serverTimestamp()
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy)
+
+      navigate('/')
+    } catch (error) {
+      console.info(error)
+    }
+  }
 
   return (
     <>
@@ -40,7 +74,7 @@ const SignUp = () => {
           <p className="pageHeader">Welcome back!</p>
         </header>
 
-        <form onSubmit={}>
+        <form onSubmit={onSubmit}>
           <input
             type="text"
             className="nameInput"
