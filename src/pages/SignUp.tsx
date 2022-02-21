@@ -1,5 +1,13 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth'
+
+import { db } from '../firebase.config'
+
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 
@@ -23,6 +31,8 @@ const SignUp = () => {
     }))
   }
 
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {}
+
   return (
     <>
       <div className="pageContainer">
@@ -30,7 +40,7 @@ const SignUp = () => {
           <p className="pageHeader">Welcome back!</p>
         </header>
 
-        <form>
+        <form onSubmit={}>
           <input
             type="text"
             className="nameInput"
