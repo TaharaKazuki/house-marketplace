@@ -50,9 +50,40 @@ const SignUp = () => {
           />
 
           <div className="passwordInputDiv">
-            <input type={showPassword ? 'text' : 'password'} />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              className="passwordInput"
+              placeholder="Password"
+              id="password"
+              value={password}
+              onChange={onChange}
+            />
+
+            <img
+              src={visibilityIcon}
+              alt="show password"
+              className="showPassword"
+              onClick={() => setShowPassword((prevState) => !prevState)}
+            />
+          </div>
+
+          <Link to="/forgot-password" className="fotgotPasswordLink">
+            Forgot Password
+          </Link>
+
+          <div className="signUpBar">
+            <p className="signUptext">Sign Up</p>
+            <button className="signUpButton">
+              <ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
+            </button>
           </div>
         </form>
+
+        {/* Google OAuth */}
+
+        <Link to="/sign-in" className="registerLink">
+          Sign In Instead
+        </Link>
       </div>
     </>
   )
