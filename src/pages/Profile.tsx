@@ -51,7 +51,14 @@ const Profile = () => {
     }))
   }
 
-  return user ? <h1>{user.displayName}</h1> : <h1> Not logged In</h1>
+  return (
+    <div className="profile">
+      <header className="profileHeader">
+        <p className="pageHeader">My Profile</p>
+        <button type="button" className="logOut" onClick={onLogout}></button>
+      </header>
+    </div>
+  )
 }
 
 export default Profile
