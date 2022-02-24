@@ -55,8 +55,25 @@ const Profile = () => {
     <div className="profile">
       <header className="profileHeader">
         <p className="pageHeader">My Profile</p>
-        <button type="button" className="logOut" onClick={onLogout}></button>
+        <button type="button" className="logOut" onClick={onLogout}>
+          Logout
+        </button>
       </header>
+
+      <main>
+        <div className="profileDetailsHeader">
+          <p className="profileDetailsText">Personal Details</p>
+          <p
+            className="changePersonalDetails"
+            onClick={() => {
+              changeDetails && onSubmit()
+              setChangeDetails((prevState) => !prevState)
+            }}
+          >
+            {changeDetails ? 'done' : 'change'}
+          </p>
+        </div>
+      </main>
     </div>
   )
 }
