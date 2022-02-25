@@ -73,6 +73,25 @@ const Profile = () => {
             {changeDetails ? 'done' : 'change'}
           </p>
         </div>
+
+        <div className="profileCard">
+          <form>
+            <input
+              type="text"
+              id="name"
+              className={!changeDetails ? 'profileName' : 'profileNameActive'}
+              disabled={!changeDetails}
+              value={name!}
+              onChange={onChange}
+            />
+
+            <input
+              type="text"
+              id="email"
+              className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
+            />
+          </form>
+        </div>
       </main>
     </div>
   )
