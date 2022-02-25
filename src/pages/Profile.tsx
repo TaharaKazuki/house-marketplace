@@ -89,6 +89,9 @@ const Profile = () => {
               type="text"
               id="email"
               className={!changeDetails ? 'profileEmail' : 'profileEmailActive'}
+              disabled={!changeDetails}
+              value={email!}
+              onChange={onChange}
             />
           </form>
         </div>
