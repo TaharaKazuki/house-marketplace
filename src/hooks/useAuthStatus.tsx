@@ -16,7 +16,7 @@ export const useAuthStatus = () => {
         setCheckingStatus(false)
       })
     }
-
+    console.info('通過')
     return () => {
       isMounted.current = false
     }
